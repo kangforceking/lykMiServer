@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "egg": "^2.22.2",
+    "egg-passport": "^2.1.0"
+  },
+  "scripts": {
+    "dev": "egg-bin dev"
+  },
+  "devDependencies": {
+    "egg-bin": "^4.13.0",
+    "eslint": "^6.0.1",
+    "pre-commit": "^1.2.2"
+  }
+}
