@@ -1,4 +1,5 @@
 {
+  "name": "lykmiserver",
   "dependencies": {
     "egg": "^2.22.2",
     "egg-passport": "^2.1.0"

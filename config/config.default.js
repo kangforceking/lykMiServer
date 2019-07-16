@@ -1,0 +1,1 @@
+exports.keys = 'lykmiserver_abcde123456'
