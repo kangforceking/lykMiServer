@@ -6,7 +6,8 @@ class HomeService extends Service {
             'http://t.weather.sojson.com/api/weather/city/101030100', 
             {
                 dataType: 'json',
-            })
+            }
+        )
         return {cityInfo, data}
     }
 }
