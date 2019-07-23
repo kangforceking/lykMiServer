@@ -13,8 +13,10 @@ module.exports = {
             /Baiduspider/i
         ]
     },
-    // mongoose: {
-    //     url: 'mongodb://127.0.0.1:27017',
-    //     options: {}
-    // }
+    mongoose: {
+        client: {
+            url: 'mongodb://127.0.0.1:27017/lyk_im_db',
+            options: {}
+        }
+    }
 }

@@ -3,7 +3,7 @@ exports.passport = {
     package: 'egg-passport'
 }
 
-// exports.mongoose = {
-//     enable: true,
-//     package: 'egg-mongoose'
-// }
+exports.mongoose = {
+    enable: true,
+    package: 'egg-mongoose'
+}
