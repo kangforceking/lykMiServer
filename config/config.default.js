@@ -15,8 +15,12 @@ module.exports = {
     },
     mongoose: {
         client: {
-            url: 'mongodb://127.0.0.1:27017/lyk_im_db',
-            options: {}
+            url: 'mongodb://127.0.0.1:27017',
+            options: {
+                autoIndex: false,
+                useNewUrlParser: true,
+                dbName: 'lyk_im_db'
+            }
         }
     }
 }
