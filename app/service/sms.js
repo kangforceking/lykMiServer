@@ -6,7 +6,10 @@ class smsService extends Service {
     }
     async postSms(payload){
         let {mobile} = payload
-        return this.ctx.model.sms.findOneAndUpdate({mobile}, payload)
+        console.log(this.ctx.model)
+        console.log('-------')
+        console.log(payload)
+        return this.ctx.model.Sms.create(payload)
     }
 }
 

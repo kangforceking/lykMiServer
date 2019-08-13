@@ -4,5 +4,5 @@ module.exports = app => {
     router.get('/user', 'user.userData')
     router.post('/login', 'user.login')
     router.post('/register', 'user.register')
-    // router.post('sms/:', controller.msm)
+    router.post('/sms', controller.sms.postSms)
 }

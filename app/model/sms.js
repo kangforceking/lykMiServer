@@ -17,8 +17,9 @@ module.exports = app =>{
         },
         createDate: {
             type: Date,
-            default: Date.new
+            default: Date.new,
+            required: true 
         }
     })
-    return mongoose.model('sms', smsSchema)
+    return mongoose.model('Sms', smsSchema)
 }
