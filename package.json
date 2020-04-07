@@ -1,19 +1,10 @@
 {
   "name": "lykmiserver",
   "dependencies": {
-    "egg": "^2.22.2",
-    "egg-mock": "^3.23.1",
-    "egg-mongoose": "^3.2.0",
-    "egg-passport": "^2.1.0",
-    "egg-socket.io": "^4.1.6",
     "koa": "^2.11.0",
     "socket.io": "^2.3.0"
   },
-  "scripts": {
-    "dev": "egg-bin dev",
-    "test": "egg-bin test",
-    "cov": "egg-bin cov"
-  },
+  
   "devDependencies": {
     "egg-bin": "^4.13.0",
     "eslint": "^6.0.1",
