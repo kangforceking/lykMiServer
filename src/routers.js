@@ -6,4 +6,4 @@ module.exports = () => {
     router.get('/', ControllHome)
     router.post('/register', ControllRegister)
     return router
-} 
+}
