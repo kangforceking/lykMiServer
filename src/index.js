@@ -7,11 +7,11 @@ const {
     mongodbUrl,
     dbName
 } = require('./confing')
+const port = 3000
+const router = require('./routers')()
+
 // const server = require('http').Server(app.callback())
 // const io = require('socket.io')(server);
-const port = 3000;
-
-const router = require('./routers')
 
 // 连接数据库
 mongoose
@@ -30,17 +30,13 @@ mongoose
 app
     .use(async (ctx, next) => {
         ctx.mongoose = mongoose
-        next()
+        await next()
     })
-    .use(bodyParser({
-        extendTypes: {
-            json: ['application/x-javascript', 'application/json']  
-        }
-    }))
-    .use((ctx, next)=>{
-        console.log(ctx.request.body)
-        next()
+    .use(async (ctx, next) => {
+        console.log(`${ctx.method}`,`${ctx.url}`);
+        await next()
     })
+    .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
     .listen(listen)
