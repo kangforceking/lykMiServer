@@ -59,14 +59,15 @@ author.save(function (err) {
     story1.save(function (err) {
         if (err) return handleError(err);
         // thats it!
+        Story.
+            findOne({ title: 'Casino Royale' }).
+            // populate('author').
+            exec(function (err, story) {
+                if (err) return handleError(err);
+                console.log(story);
+                debugger
+                // prints "The author is Ian Fleming"
+            })        
     });
 });
 
-Story.
-    findOne({ title: 'Casino Royale' }).
-    // populate('author').
-    exec(function (err, story) {
-        if (err) return handleError(err);
-        console.log(story);
-        // prints "The author is Ian Fleming"
-    })

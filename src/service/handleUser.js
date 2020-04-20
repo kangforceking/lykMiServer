@@ -18,7 +18,6 @@ module.exports = class User {
             phone
         })
             .then((_id)=>{
-                debugger
                 return Promise.all([
                     this.savePassword({
                         user: _id,
