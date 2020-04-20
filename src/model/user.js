@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
+const {
+    Types: {
+        ObjectId
+    }
+} = Schema
 let user = new Schema({
     name: {
         type: String,
@@ -18,36 +23,34 @@ let user = new Schema({
     password: {
         type: String,
         required: [true, '密码不能为空'],
-        min: [6, '请输入6位数密码'],
-        max: [6, '请输入6位数密码'],
-        validate: {
-            validator(value) {
-                return /^[A-Za-z0-9_]{6}$/.test(value)
-            },
-            message: '密码由字母数字或下划线组成'
-        }
+        // min: [6, '请输入6位数密码'],
+        // max: [6, '请输入6位数密码'],
+        // validate: {
+        //     validator(value) {
+        //         return /^[A-Za-z0-9_]{6}$/.test(value)
+        //     },
+        //     message: '密码由字母数字或下划线组成'
+        // }
     },
     phone: {
         type: String,
         index: true,
         unique: true,
         required: [true, '手机号码不能为空'],
-        min: [11, '手机号码为11位数'],
-        max: [11, '手机号码为11位数'],
-        validate: {
-            validator(value) {
-                return /^1[0-9]{10}$/.test(value)
-            },
-            message: '手机号码格式错误'
-        }
+        // min: [11, '手机号码为11位数'],
+        // max: [11, '手机号码为11位数'],
+        // validate: {
+        //     validator(value) {
+        //         return /^1[0-9]{10}$/.test(value)
+        //     },
+        //     message: '手机号码格式错误'
+        // }
     },
-    create: { 
-        type: Date,
-        default: Date.now 
-    },
+    passwordSecret: [{ type: ObjectId, ref: 'Password' }],
+    phoneSecret: [{ type: ObjectId, ref: 'Phone' }],
     update: { 
         type: Date, 
         default: Date.now 
     }
 })
-module.exports = mongoose.model('user', user)
+module.exports = mongoose.model('User', user)
