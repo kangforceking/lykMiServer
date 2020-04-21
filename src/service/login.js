@@ -9,15 +9,25 @@ module.exports = function ({name, password}) {
                 if (error) {
                     reject(error)
                 } else {
-                    console.log(user.password)
+                    let {
+                        password,
+                        passwordSecret: {
+                            secret
+                        }
+                    } = user
+                    
                     let {encryptedData} =  encryptionStr({
                         str: password,
-                        secret: user.passwordSecret.secret,
+                        secret,
                         type: 'sha512'
                     })
-                    console.log(encryptedData)
-                    console.log(encryptedData === user.password)
-                    resolve(user)
+                    if (encryptedData === user.password) {
+                        resolve({ name })
+                    } else {
+                        reject({
+                            message: '用户名或密码错误'
+                        })
+                    }
                 }
             })    
     })
