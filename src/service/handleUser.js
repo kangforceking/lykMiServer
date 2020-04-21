@@ -12,44 +12,42 @@ module.exports = class User {
         passwordSecret,
         phoneSecret
     }) {
-        return this.saveUser({
-            name,
-            password,
-            phone
-        })
-            .then((_id)=>{
-                return Promise.all([
-                    this.savePassword({
-                        user: _id,
-                        secret: passwordSecret
-                    }),
-                    this.savePhone({
-                        user: _id,
-                        secret: phoneSecret
-                    })
-                ])
+        return Promise.all([
+            this.savePassword({
+                secret: passwordSecret
+            }),
+            this.savePhone({
+                secret: phoneSecret
             })
-            .then((res)=>{
-                console.log(res)
-            })
-            .catch((error)=> {
-                console.log(error)
+        ])
+            .then(([passwordId, phoneId])=>{
+                return this.saveUser({
+                    name,
+                    password,
+                    phone,
+                    passwordId, 
+                    phoneId
+                })
             })
     }
     saveUser ({
         name,
         password,
-        phone
+        phone,
+        passwordId,
+        phoneId
     }) {
         let user = new UserMode({
             name,
             password,
-            phone
+            phone,
+            passwordSecret: passwordId,
+            phoneSecret: phoneId
         })
         return new Promise((resolve, reject) => {
             user.save(function (err) {
                 if (err) {
-                    let { code, errors} = err
+                    let { code, errors } = err
                     let message = ''
                     switch (code) {
                         case 11000:
@@ -90,7 +88,7 @@ module.exports = class User {
                     }
                     reject({message, errors})
                 } else {
-                    resolve()
+                    resolve(password._id)
                 }
             })
         })
@@ -117,7 +115,7 @@ module.exports = class User {
                     }
                     reject({message, errors})
                 } else {
-                    resolve()
+                    resolve(phone._id)
                 }
             })
         })

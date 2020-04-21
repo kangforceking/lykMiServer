@@ -8,7 +8,7 @@ let phone = new Schema({
         unique: true,
         sparse: true,
         required: [true, 'secret不能为空'],
-        user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
-    }
+    },
+    user: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 module.exports = mongoose.model('Phone', phone)

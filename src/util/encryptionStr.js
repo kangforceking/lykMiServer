@@ -3,11 +3,14 @@ const stringRandom = require('./stringRandom')
 
 module.exports = function({
     str,
-    type = 'sha256'
+    type = 'sha256',
+    secret
 }) {
-    let secret = stringRandom({
-        leg: 10
-    })
+    if (!secret) {
+        secret = stringRandom({
+            leg: 10
+        })    
+    }
     let hmac = crypto.createHmac(type, secret)
     let conent = hmac.update(str)
     let encryptedData = conent.digest('hex')

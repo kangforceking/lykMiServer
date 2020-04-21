@@ -46,8 +46,8 @@ let user = new Schema({
         //     message: '手机号码格式错误'
         // }
     },
-    passwordSecret: [{ type: ObjectId, ref: 'Password' }],
-    phoneSecret: [{ type: ObjectId, ref: 'Phone' }],
+    passwordSecret: { type: ObjectId, ref: 'Password' },
+    phoneSecret: { type: ObjectId, ref: 'Phone' },
     update: { 
         type: Date, 
         default: Date.now 

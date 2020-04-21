@@ -64,8 +64,7 @@ author.save(function (err) {
             // populate('author').
             exec(function (err, story) {
                 if (err) return handleError(err);
-                console.log(story);
-                debugger
+                console.log(story.author);
                 // prints "The author is Ian Fleming"
             })        
     });
