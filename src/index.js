@@ -1,13 +1,12 @@
 const koa = require('koa') 
 const app = new koa()
-const bodyParser = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const mongoose = require('mongoose')
 const {
     listen,
     mongodbUrl,
     dbName
 } = require('./confing')
-const port = 3000
 const router = require('./routers')()
 
 // const server = require('http').Server(app.callback())
@@ -33,16 +32,17 @@ app
         ctx.mongoose = mongoose
         await next()
     })
+    .use(koaBody())
     .use(async (ctx, next) => {
-        console.log(`${ctx.method}`,`${ctx.url}`);
+        console.log(`${ctx.method}`,`${ctx.url}`)
+        ctx.body = JSON.stringify(ctx.request.body)
         await next()
     })
-    .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
     .listen(listen)
     .on('error', err => {
-        log.error('server error', err)
+        console.error(err)
     })
 
 // app.listen(port, () => {

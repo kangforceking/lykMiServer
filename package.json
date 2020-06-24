@@ -1,8 +1,12 @@
 {
   "name": "lykmiserver",
+  "scripts": {
+    "start": "node src/index.js"
+  },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
+    "koa-body": "^4.2.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^8.0.8",
     "mongoose": "^5.9.7",
