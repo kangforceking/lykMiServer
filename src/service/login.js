@@ -1,8 +1,9 @@
 const UserMode = require('../model/user')
 const encryptionStr = require('../util/encryptionStr')
 const crypto = require('crypto')
+const loginCookies = require('./loginCookies')
 
-module.exports = function ({name, password}) {
+module.exports = function ({ctx, name, password}) {
     return new Promise((resolve, reject) => {
         UserMode
             .findOne({ name })
@@ -21,7 +22,8 @@ module.exports = function ({name, password}) {
                             iv,
                             key
                         },
-                        phone
+                        phone,
+                        _id
                     } = user
                     let { encryptedData } = encryptionStr({
                         str: password,
@@ -32,9 +34,15 @@ module.exports = function ({name, password}) {
                         let decipher = crypto.createDecipheriv('aes192', key, iv)
                         decipher.update(phone, 'hex')
                         let decodePhone = decipher.final('utf8')
-                        resolve({
+                        let userInfo = {
                             name,
-                            phone: decodePhone
+                            phone: decodePhone,
+                            userId: _id.toString()
+                        }
+                        resolve(userInfo)
+                        loginCookies({
+                            ctx,
+                            userInfo
                         })
                     } else {
                         reject({

@@ -10,6 +10,7 @@ module.exports = async function (ctx) {
         }
     } = ctx
     let [loginError, userInfo] = await ServiceLogin({
+        ctx,
         name,
         password
     })
@@ -28,6 +29,6 @@ module.exports = async function (ctx) {
         ctx.body = {
             code: 200,
             ...userInfo 
-        }    
+        }
     }
 }
