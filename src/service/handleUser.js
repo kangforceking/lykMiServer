@@ -61,6 +61,17 @@ module.exports = class User {
                             break;
                     }
                     reject({message, errors})
+                    console.log(mongoose.Types.ObjectId(passwordId))
+                    PasswordMode.remove({
+                        _id: passwordId
+                    }, function (err) {
+                        console.log(err)
+                    })
+                    PhoneMode.remove({
+                        _id: phoneId
+                    }, function (err) {
+                        console.log(err)
+                    })
                 } else {
                     resolve(user._id)
                 }

@@ -31,11 +31,6 @@ module.exports = function ({name, password}) {
                         secret: _passwordSecret
                     })
                     if (encryptedData === user.password) {
-                        // let decipher = crypto.createDecipher('aes192', _phoneSecret)
-                        // let decodePhone = decipher.update(phone, 'hex')
-                        // decodePhone += decodePhone.final('utf8')
-                        // key = new Buffer(key)
-                        // iv = new Buffer(iv)
                         let decipher = crypto.createDecipheriv('aes192', key, iv)
                         decipher.update(phone, 'hex')
                         let decodePhone = decipher.final('utf8')

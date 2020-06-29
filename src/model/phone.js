@@ -10,10 +10,12 @@ let phone = new Schema({
     //     required: [true, 'secret不能为空'],
     // },
     iv: {
-        type: Buffer
+        type: Buffer,
+        required: [true, 'iv不能为空']
     },
     key: {
-        type: Buffer
+        type: Buffer,
+        equired: [true, 'key不能为空']
     },
     user: { type: Schema.Types.ObjectId, ref: 'User' }
 })
