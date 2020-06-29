@@ -10,14 +10,18 @@ module.exports = class User {
         password,
         phone,
         passwordSecret,
-        phoneSecret
+        phoneSecret: {
+            iv,
+            key
+        }
     }) {
         return Promise.all([
             this.savePassword({
                 secret: passwordSecret
             }),
             this.savePhone({
-                secret: phoneSecret
+                iv,
+                key
             })
         ])
             .then(([passwordId, phoneId])=>{
@@ -95,11 +99,13 @@ module.exports = class User {
     }
     savePhone({
         user,
-        secret
+        iv,
+        key
     }) {
         let phone = new PhoneMode({
             user,
-            secret
+            iv,
+            key
         })
         return new Promise((resolve, reject) => {
             phone.save(function(err) {

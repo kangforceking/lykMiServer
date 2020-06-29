@@ -2,12 +2,18 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 let phone = new Schema({
-    secret: { 
-        type: String,
-        index: true,
-        unique: true,
-        sparse: true,
-        required: [true, 'secret不能为空'],
+    // secret: { 
+    //     type: String,
+    //     // index: true,
+    //     unique: true,
+    //     sparse: true,
+    //     required: [true, 'secret不能为空'],
+    // },
+    iv: {
+        type: Buffer
+    },
+    key: {
+        type: Buffer
     },
     user: { type: Schema.Types.ObjectId, ref: 'User' }
 })

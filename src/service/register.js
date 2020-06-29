@@ -20,42 +20,26 @@ module.exports = function(ctx){
         type: 'sha512'
     })
     let {
-        secret: phoneSecret,
-        encryptedData: newPhone
+        // secret: phoneSecret,
+        encryptedData: newPhone,
+        iv,
+        key
     } = encryptionStr({
-        str: phone
+        str: phone,
+        type: 'aes192'
     })
     
-    // let user = new UserMode({
-    //     name,
-    //     password: newPassword,
-    //     phone: newPhone
-    // })
+    
     let userServicenew = new UserService()
     return userServicenew.creation({
         name,
         password: newPassword,
         phone: newPhone,
         passwordSecret,
-        phoneSecret
+        phoneSecret: {
+            iv,
+            key
+        }
     })
 
-    // return new Promise((resolve, reject) => {
-    //     user.save(function (err) {
-    //         if (err) {
-    //             let { code, errors} = err
-    //             let message = ''
-    //             switch (code) {
-    //                 case 11000:
-    //                     message = '用户已存在'
-    //                     break;
-    //                 default:
-    //                     break;
-    //             }
-    //             reject({message, errors})
-    //         } else {
-    //             resolve()
-    //         }
-    //     })
-    // })
 }

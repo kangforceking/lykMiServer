@@ -4,7 +4,7 @@ const { Schema } = mongoose
 let password = new Schema({
     secret: { 
         type: String,
-        index: true,
+        // index: true,
         unique: true,
         sparse: true,
         required: [true, 'secret不能为空'],

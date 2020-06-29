@@ -8,9 +8,12 @@ module.exports = function({
 }) {
     if (!secret) {
         // 随机数用于“加盐”
-        secret = crypto.randomBytes(26).toString('hex')
+        secret = crypto.randomBytes(16).toString('hex')
     }
     let encryptedData = ''
+    let result = {
+
+    }
     switch (type) {
         // 不可逆加密
         case 'sha512':
@@ -34,18 +37,27 @@ module.exports = function({
             break
         // 可逆的加密
         case 'aes192':
-            console.log(secret)
-            let cipher = crypto.createCipher(type, secret)
-            let crypted = cipher.update(str, 'utf8', 'hex');
-            encryptedData = crypted.final('hex')
+            // let cipher = crypto.createCipher(type, secret)
+            // let crypted = cipher.update(str)
+            // encryptedData = crypted.final('hex')
+            {
+                let key = crypto.randomBytes(192/8)
+                let iv = crypto.randomBytes(128/8)
+                let cipher = crypto.createCipheriv(type, key, iv)
+                cipher.update(str)
+                encryptedData = cipher.final('hex')
+                result.iv = iv
+                result.key = key
+            }
             break
         default:
             break
            
     }
-    return {
+    result = {
+        ...result,
         secret,
         encryptedData
     }
-    
+    return result
 }
