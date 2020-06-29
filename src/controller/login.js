@@ -9,12 +9,25 @@ module.exports = async function (ctx) {
             }
         }
     } = ctx
-    await ServiceLogin({
+    let [loginError, userInfo] = await ServiceLogin({
         name,
         password
     })
-    ctx = {
-        code: 200,
-        message: '等等，调试中'
+        .then((data)=>{
+            return [null, data]
+        })
+        .catch((err)=>{
+           return [err, null]
+        })
+    if (loginError) {
+        ctx.body = {
+            code: 110001,
+            message: loginError.message || '登录失败'
+        }
+    } else {
+        ctx.body = {
+            code: 200,
+            ...userInfo 
+        }    
     }
 }

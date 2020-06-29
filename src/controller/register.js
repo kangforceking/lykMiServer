@@ -1,6 +1,5 @@
 const ServiceRegister = require('../service/register')
 module.exports = async (ctx, next) => {
-    console.log(JSON.stringify(ctx.request.body))
     ctx.type = 'application/json';
     ctx.status = 200
     let {
@@ -30,7 +29,7 @@ module.exports = async (ctx, next) => {
             ctx.body = {
                 code: 100001,
                 message
-            }
+            } 
         })
     next()
 }

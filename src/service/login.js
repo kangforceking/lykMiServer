@@ -3,14 +3,12 @@ const encryptionStr = require('../util/encryptionStr')
 const crypto = require('crypto')
 
 module.exports = function ({name, password}) {
-    console.log(name, password)
     return new Promise((resolve, reject) => {
         UserMode
             .findOne({ name })
-            .populate('passwordSecret',)
+            .populate('passwordSecret')
             .populate('phoneSecret')
             .exec(function(error, user) {
-                console.log(user)
                 if (error) {
                     reject(error)
                 } else {

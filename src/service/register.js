@@ -11,7 +11,6 @@ module.exports = function(ctx){
             }
         }
     } = ctx
-    console.log(name, password, phone)
     let {
         secret: passwordSecret,
         encryptedData: newPassword 

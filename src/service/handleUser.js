@@ -61,7 +61,6 @@ module.exports = class User {
                             break;
                     }
                     reject({message, errors})
-                    console.log(mongoose.Types.ObjectId(passwordId))
                     PasswordMode.remove({
                         _id: passwordId
                     }, function (err) {
