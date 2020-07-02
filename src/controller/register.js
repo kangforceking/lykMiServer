@@ -31,5 +31,5 @@ module.exports = async (ctx, next) => {
                 message
             } 
         })
-    next()
+    await next()
 }

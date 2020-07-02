@@ -1,6 +1,6 @@
 const ServiceLogin = require('../service/login')
 
-module.exports = async function (ctx) {
+module.exports = async function (ctx, next) {
     let {
         request: {
             body: {
@@ -31,4 +31,5 @@ module.exports = async function (ctx) {
             ...userInfo 
         }
     }
+    return next()
 }

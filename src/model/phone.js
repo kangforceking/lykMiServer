@@ -15,7 +15,7 @@ let phone = new Schema({
     },
     key: {
         type: Buffer,
-        equired: [true, 'key不能为空']
+        required: [true, 'key不能为空']
     },
     user: { type: Schema.Types.ObjectId, ref: 'User' }
 })

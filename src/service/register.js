@@ -1,4 +1,3 @@
-const UserMode = require('../model/user')
 const encryptionStr = require('../util/encryptionStr')
 const UserService = require('./handleUser')
 module.exports = function(ctx){

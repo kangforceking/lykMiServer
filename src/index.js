@@ -40,12 +40,16 @@ app
     })
     .use(router.routes())
     .use(router.allowedMethods())
-    .listen(listen)
+    // .use(async (ctx, next) => {
+    //     console.log(ctx.state)
+    //     await next()
+    // })
+    .listen(listen) 
     .on('error', err => {
         console.error(err)
     })
 
-// app.listen(port, () => {∏
+// app.listen(port, () => {
 //     console.log(`app run at : http://127.0.0.1:${port}`);
 // })
 

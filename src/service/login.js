@@ -9,7 +9,7 @@ module.exports = function ({ctx, name, password}) {
             .findOne({ name })
             .populate('passwordSecret')
             .populate('phoneSecret')
-            .exec(function(error, user) {
+            .exec(async function(error, user) {
                 if (error) {
                     reject(error)
                 } else {
@@ -39,11 +39,22 @@ module.exports = function ({ctx, name, password}) {
                             phone: decodePhone,
                             userId: _id.toString()
                         }
-                        resolve(userInfo)
-                        loginCookies({
+                        // 设置cookies并保存会话信息
+                        let [error] = await loginCookies({
                             ctx,
                             userInfo
                         })
+                            .then(() => {
+                                return [null]
+                            })
+                            .catch((error) => {
+                                return [error]
+                            })
+                        if (error) {
+                            reject(error)
+                        } else {
+                            resolve(userInfo)
+                        }
                     } else {
                         reject({
                             message: '用户名或密码错误'
