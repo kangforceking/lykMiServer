@@ -31,5 +31,5 @@ module.exports = async function (ctx, next) {
             ...userInfo 
         }
     }
-    return next()
+    await next()
 }

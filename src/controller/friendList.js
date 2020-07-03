@@ -5,7 +5,7 @@ module.exports = async function (ctx, next) {
     if (!userId || !sessionValue) {
         ctx.throw(401, '请先登录')
     } else {
-        await friendListService({
+        friendListService({
             ctx,
             userId,
             sessionValue
@@ -21,21 +21,6 @@ module.exports = async function (ctx, next) {
             .catch(({message})=>{
                 ctx.throw(401, message)
             })    
-    }
-    
-    // let {
-    //     state: {
-    //         user: {
-    //             userId,
-    //             sessionValue
-    //         }
-    //     }
-    // } = ctx
-    
-    // console.log(ctx.cookies.get(userId))
-    ctx.body = {
-        code: 200,
-        list: []
     }
     await next()
 }
