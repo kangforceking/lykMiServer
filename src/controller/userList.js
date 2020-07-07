@@ -5,7 +5,7 @@ module.exports = async function (ctx, next) {
     if (!userId || !sessionValue) {
         ctx.throw(401, '请先登录')
     } else {
-        userListService({
+        await userListService({
             ctx,
             userId,
             sessionValue

@@ -40,10 +40,6 @@ app
     })
     .use(router.routes())
     .use(router.allowedMethods())
-    // .use(async (ctx, next) => {
-    //     console.log(ctx.state)
-    //     await next()
-    // })
     .listen(listen) 
     .on('error', err => {
         console.error(err)

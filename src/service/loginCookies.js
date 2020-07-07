@@ -72,7 +72,7 @@ module.exports = function ({
                 upData({
                     userId,
                     sessionValue
-                })    
+                })
             )
         } else {
             ;[error, isSave] = await awaitTo(
