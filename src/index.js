@@ -10,7 +10,7 @@ const {
 const router = require('./routers')()
 
 // const server = require('http').Server(app.callback())
-// const io = require('socket.io')(server);
+// const io = require('socket.io')(server)
 
 mongoose.set('useCreateIndex', true)
 // 连接数据库
