@@ -1,4 +1,5 @@
 const userListService = require('../service/userList')
+
 module.exports = async function (ctx, next) {
     let userId = ctx.cookies.get('userId')
     let sessionValue = ctx.cookies.get('sessionValue')
@@ -10,17 +11,15 @@ module.exports = async function (ctx, next) {
             userId,
             sessionValue
         })
-            .then(()=> {
+            .then((userList)=> {
                 ctx.body = {
                     code: 200,
-                    list: [{
-                        'abc': 'qwerqf'
-                    }]
+                    list: userList
                 }
             })
             .catch(({message})=>{
                 ctx.throw(401, message)
-            })    
+            })
     }
     await next()
 }

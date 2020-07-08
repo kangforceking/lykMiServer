@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const UserMode = require('../model/user')
 const PasswordMode = require('../model/password')
 const PhoneMode = require('../model/phone')
